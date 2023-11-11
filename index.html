@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Boca de urna - trabajo práctico Nº 1 - Grupo 4</title>
+
+    <script src="https://unpkg.com/react@17.0.2/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+    <style>
+        * {
+            
+            font-family: 'Lucida Sans', sans-serif;
+        }
+
+        body {
+
+            background: linear-gradient(to right, blue, cyan);
+          
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+        }
+
+        .boca {
+         
+           margin-top: 130px;
+      
+   
+
+
+        }
+
+        /*
+
+        @media (prefers-color-scheme: light) {
+            body {
+                color: #213547;
+                background-color: #ffffff;
+            }
+
+            a:hover {
+                color: #747bff;
+            }
+
+            button {
+                background-color: #f9f9f9;
+            }
+
+            :root {
+                font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+                line-height: 1.5;
+                font-weight: 400;
+
+                color-scheme: light dark;
+                color: rgba(255, 255, 255, 0.87);
+                background-color: #242424;
+
+                font-synthesis: none;
+                text-rendering: optimizeLegibility;
+                -webkit-font-smoothing: antialiased;
+                -moz-osx-font-smoothing: grayscale;
+                -webkit-text-size-adjust: 100%;
+            }
+
+
+        }
+
+        */
+
+        .candidato {
+            background-color: azure;
+            border-radius: 10px;
+            
+            margin: 25px;
+            padding: 10px;
+            text-align: center;
+            box-shadow: 6px 6px 10px #333;
+
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+
+
+
+        .contadorVotos {
+
+            color: blue;
+            font-size: 3.2em;
+        }
+
+        h2 {
+
+            color: white;
+            text-align: center;
+        }
+
+
+
+        .btn {
+
+            border-radius: 8px;
+            border: 1px solid gray;
+            padding: 0.6em 1.2em;
+            font-size: 1em;
+            font-weight: 500;
+            font-family: inherit;
+            cursor: pointer;
+            transition: border-color 0.25s;
+            color: white;
+
+            background-color: rgb(0, 191, 255);
+            margin: 10px;
+
+
+        }
+
+        .btn:hover {
+
+            background-color: rgb(57, 56, 60);
+        }
+    </style>
+
+
+
+</head>
+
+<body>
+
+    <head>
+
+    </head>
+
+    <main>
+
+        <script type="text/babel">
+
+            let { useState } = React;
+
+
+
+            let datos = [
+                { nombre: "Candidato 1" },
+                { nombre: "Candidato 2" },
+            ];
+
+
+            
+
+            function Candidato({ nombre }) {
+
+                let [cantidadVotos, setCantidadVotos] = useState(0);
+            
+                // votos positivos 
+                function incrementoVotos() {
+
+                    setCantidadVotos(cantidadVotos + 1)
+                 
+
+                }
+
+                // votos negativos
+                function decrementoVotos() {
+
+
+                    if (cantidadVotos > 0) {
+
+                        setCantidadVotos(cantidadVotos - 1)
+                      
+                    }
+
+
+                }
+
+
+                return (
+                    <div className="candidato">
+
+                        <div className="datos"><b>{nombre}</b></div>
+                        <div className="contadorVotos"><b>{cantidadVotos}</b></div>
+                        <div >
+
+
+
+                            <button className="btn" onClick={incrementoVotos}>+</button>
+                            <button className="btn" onClick={decrementoVotos}>-</button>
+
+
+
+                        </div>
+
+
+
+
+                    </div>
+                )
+            }
+
+            function BocaUrna({ candidatos }) {
+
+                return (
+                    <>
+                        <div className="boca">
+                            <h2>Boca de urnas</h2>
+                            <div id="bocaUrna">
+
+                                {candidatos.map((candidato) => <Candidato {...candidato} />)}
+
+                            </div>
+                          
+                        </div>
+
+                    </>
+                )
+            }
+
+
+
+            ReactDOM.render(<BocaUrna candidatos={datos} />, document.getElementById('root'))
+
+
+
+        </script>
+
+        <div id="root"></div>
+
+    </main>
+
+    <footer>
+
+
+    </footer>
+
+
+</body>
+
+</html>
